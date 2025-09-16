@@ -1,14 +1,18 @@
+// src/app/app.ts
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { Navbar } from './navbar/navbar';
 import { Footer } from './footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, RouterLink, Footer],
+  standalone: true,
+  imports: [
+    RouterOutlet, // Keep only what is used in the template
+    Navbar,
+    Footer
+  ],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
-export class App {
-  protected title = 'shopping_ui';
-}
+export class App {}
