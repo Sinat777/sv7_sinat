@@ -1,0 +1,26 @@
+<section class="page products">
+  <h1>Products</h1>
+
+  <div class="grid">
+    <article class="card" *ngFor="let p of products; trackBy: trackByName">
+      <div class="thumb">
+        <img
+          [src]="p.imageUrl || placeholder"
+          [alt]="p.name"
+          (error)="onImgError($event)"
+        />
+      </div>
+
+      <h3>{{ p.name }}</h3>
+      <p class="price">${{ p.price }}</p>
+
+      <div class="qty">
+        <button (click)="dec(p)" aria-label="Decrease quantity">−</button>
+        <span class="qty-value">{{ p.qty }}</span>
+        <button (click)="inc(p)" aria-label="Increase quantity">+</button>
+      </div>
+
+      <button class="add" (click)="addToCart(p)">Add to Cart</button>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="col brand">
+      <div class="logo">🛒 Pito-iPhone-Shop</div>
+      <p class="muted">
+        Premium Apple devices — iPhone, MacBook, iPad & AirPods.
+      </p>
+      <div class="contact">
+        <div>📍 {{ address }}</div>
+        <div>📞 {{ phone }}</div>
+        <div>✉️ {{ email }}</div>
+      </div>
+    </div>
+
+    <nav class="col nav">
+      <h4>Shop</h4>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/products">Products</a></li>
+        <li><a routerLink="/cart">Cart</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="col social">
+      <h4>Follow</h4>
+      <ul class="icons">
+        <li><a href="#" aria-label="Facebook">👍</a></li>
+        <li><a href="#" aria-label="Instagram">📷</a></li>
+        <li><a href="#" aria-label="TikTok">🎵</a></li>
+        <li><a href="#" aria-label="YouTube">▶️</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="legal">
+    <span>© {{ year }} Sinat-iPhone-Shop. All rights reserved.</span>
+    <span class="links">
+      <a routerLink="/about">About</a>
+      <a routerLink="/contact">Support</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </span>
+  </div>
+</footer>

@@ -1,0 +1,60 @@
+<section class="home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="badge-row">
+        <span class="badge">Official-quality</span>
+        <span class="badge ghost">Warranty included</span>
+      </div>
+
+      <h1>Premium Apple Devices</h1>
+      <p class="sub">
+        Discover iPhone, MacBook, iPad, and AirPods — curated with care and ready to ship.
+      </p>
+
+      <div class="actions">
+        <a class="btn accent" routerLink="/products">Shop Products</a>
+      </div>
+
+      <ul class="perks">
+        <li *ngFor="let p of perks">
+          <span class="ic">{{ p.icon }}</span>
+          <div class="perk-text">
+            <strong>{{ p.label }}</strong>
+            <span class="muted">{{ p.sub }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Animated media card (GIF sized to show full frame) -->
+    <article class="hero-card float">
+      <div class="hero-thumb contain">
+        <img [src]="heroImage" alt="Featured"
+             (error)="onImgError($event)" loading="lazy" />
+      </div>
+      <div class="hero-meta">
+        <h3>Today’s Highlight</h3>
+        <p class="muted">iPhone · Mac · iPad · AirPods</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Featured cards -->
+  <section class="featured">
+    <h2>Featured</h2>
+    <div class="featured-grid">
+      <a class="fcard" routerLink="/products" *ngFor="let f of featured">
+        <div class="fthumb">
+          <img [src]="f.img" [alt]="f.title" loading="lazy" />
+        </div>
+        <div class="fmeta">
+          <div class="ftitle">{{ f.title }}</div>
+          <div class="fsub muted">{{ f.subtitle }}</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Categories -->

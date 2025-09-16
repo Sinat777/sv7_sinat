@@ -1,0 +1,226 @@
+/* src/app/products-page/products-page.css
+   --- modern, consolidated, "cool" look ---
+*/
+
+
+:root {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+
+  --accent: #2563eb;   
+  --accent-2: #9333ea; 
+
+  --shadow-sm: 0 4px 12px rgba(2, 6, 23, 0.06);
+  --shadow-lg: 0 16px 40px rgba(2, 6, 23, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f14;
+    --card: #0f1621;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --border: #1f2937;
+    --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.55);
+  }
+}
+
+
+.page.products {
+  padding: clamp(16px, 3vw, 28px);
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text);
+}
+
+.page.products h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  letter-spacing: .2px;
+  line-height: 1.15;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* ← change to 1fr for single column */
+  gap: clamp(.9rem, 2vw, 1.25rem);
+}
+
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  padding: 1rem;
+
+
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(135deg, var(--accent), var(--accent-2)) border-box;
+  border: 1.5px solid transparent;
+  border-radius: 18px;
+
+  box-shadow: var(--shadow-sm);
+  transition: transform .12s ease, box-shadow .25s ease, border-color .2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;          
+  border-radius: 14px;
+  overflow: hidden;
+  background: radial-gradient(120% 120% at 50% 0%,
+              rgba(37,99,235,0.12), rgba(147,51,234,0.12) 40%, transparent 70%),
+              #f3f4f6;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform .5s ease;
+}
+
+.card:hover .thumb img {
+  transform: scale(1.07);
+}
+
+
+.card h3 {
+  margin: .25rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.price {
+  font-weight: 700;
+  color: var(--text);
+  opacity: .95;
+  margin-bottom: .15rem;
+}
+
+
+.qty {
+  margin-top: auto;             
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: .35rem .5rem;
+  background: rgba(0,0,0,.02);
+}
+
+.qty button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #ffffff10;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: background .15s ease, transform .05s ease;
+}
+
+.qty button:hover { background: #ffffff25; }
+.qty button:active { transform: translateY(1px); }
+
+.qty-value {
+  min-width: 2ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+
+.add {
+  margin-top: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: .2px;
+  box-shadow: 0 6px 18px rgba(37,99,235,.25);
+  transition: transform .05s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.add:hover {
+  box-shadow: 0 10px 26px rgba(147,51,234,.28);
+  filter: brightness(1.05);
+}
+
+.add:active { transform: translateY(1px); }
+
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-actions {
+  margin-top: auto;           
+  display: flex;
+}
+
+.add {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+
+  padding: .8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: .2px;
+  cursor: pointer;
+
+  box-shadow: 0 8px 22px rgba(37,99,235,.25);
+  transition: transform .05s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.add:hover {
+  box-shadow: 0 12px 30px rgba(147,51,234,.28);
+  filter: brightness(1.05);
+}
+
+.add:active {
+  transform: translateY(1px);
+}
+
+.add svg { flex: 0 0 auto; }

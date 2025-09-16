@@ -1,0 +1,98 @@
+<section class="page cart">
+  <h1>Your Cart</h1>
+
+  <!-- Define the alias ONCE and keep all uses inside -->
+  <ng-container *ngIf="items$ | async as items">
+    
+    <!-- Empty state -->
+    <div *ngIf="items.length === 0" class="empty">
+      <div class="empty-card">
+        <div class="icon">🛒</div>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven’t added anything yet.</p>
+        <a routerLink="/products" class="btn accent">Browse products</a>
+      </div>
+    </div>
+
+    <!-- Cart content -->
+    <div *ngIf="items.length > 0" class="cart-grid">
+      <!-- Table -->
+      <div class="card cart-table-card">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let i of items">
+              <!-- Name + photo -->
+              <td class="item-cell with-thumb">
+                <img
+                  class="item-thumb"
+                  [src]="i.imageUrl || placeholder"
+                  [alt]="i.name"
+                  (error)="onImgError($event)"
+                />
+                <div class="item-meta">
+                  <div class="item-name">{{ i.name }}</div>
+                </div>
+              </td>
+
+              <!-- Qty -->
+              <td><span class="qty-chip">{{ i.qty }}</span></td>
+
+              <!-- Price -->
+              <td class="num">{{ i.price | currency:'USD':'symbol' }}</td>
+
+              <!-- Total (price * qty) -->
+              <td class="num strong">{{ (i.price * i.qty) | currency:'USD':'symbol' }}</td>
+
+              <!-- Actions -->
+              <td class="actions">
+                <button class="btn ghost danger" (click)="remove(i.name)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="5">
+                <div class="table-footer">
+                  <div class="note">Taxes & shipping calculated at checkout.</div>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Summary -->
+      <aside class="card summary-card">
+        <h2>Order Summary</h2>
+        <div class="row">
+          <span>Subtotal</span>
+          <span class="num">{{ total | currency:'USD':'symbol' }}</span>
+        </div>
+        <div class="row">
+          <span>Shipping</span>
+          <span class="muted">Calculated at checkout</span>
+        </div>
+        <div class="divider"></div>
+        <div class="row total">
+          <span>Total</span>
+          <span class="num strong">{{ total | currency:'USD':'symbol' }}</span>
+        </div>
+
+        <button class="btn accent wide">Checkout</button>
+        <button class="btn ghost wide" (click)="clear()">Clear cart</button>
+        <div class="tiny muted">By placing your order, you agree to our Terms.</div>
+      </aside>
+    </div>
+  </ng-container>
+</section>
